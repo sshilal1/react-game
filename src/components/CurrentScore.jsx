@@ -1,0 +1,23 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+const CurrentScore = (props) => {
+  const scoreStyle = {
+    fontSize: 80,
+    fill: '#d6d33e',
+  };
+
+  return (
+    <g filter="url(#shadow)">
+      <text style={scoreStyle} x="-150" y="80">
+        {props.score}
+      </text>
+    </g>
+  );
+};
+
+CurrentScore.propTypes = {
+  score: PropTypes.number.isRequired,
+};
+
+export default CurrentScore;
