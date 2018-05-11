@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Sky from './Sky';
 import Ground from './Ground';
+import CannonBall from './CannonBall';
 import CannonBase from './CannonBase';
 import CannonPipe from './CannonPipe';
 import CurrentScore from './CurrentScore'
@@ -17,6 +18,7 @@ const Canvas = (props) => {
       id="aliens-go-home-canvas"
       preserveAspectRatio="xMaxYMax none"
       onMouseMove={props.trackMouse}
+      onClick={props.shoot}
       viewBox={viewBox}
     >
       <defs>
@@ -26,6 +28,14 @@ const Canvas = (props) => {
       </defs>
       <Sky />
       <Ground />
+
+      {props.gameState.cannonBalls.map(cannonBall => (
+        <CannonBall
+          key={cannonBall.id}
+          position={cannonBall.position}
+        />
+      ))}
+      
       <CannonPipe rotation={props.angle} />
       <CannonBase />
       <CurrentScore score={15} />
@@ -63,6 +73,7 @@ Canvas.propTypes = {
   }).isRequired,
   trackMouse: PropTypes.func.isRequired,
   startGame: PropTypes.func.isRequired,
+  shoot: PropTypes.func.isRequired,
 };
 
 export default Canvas;
